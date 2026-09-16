@@ -11,6 +11,18 @@ function MainScreen() {
   const [selectedValue, setSelectedValue] = useState('0');
   const [pet,setPet] = useState<string[]>([]);
 
+  const [petType, setPetType] = useState<string>('');
+
+      for (let i = 0; i < pet.length; i++) {
+        if (selectedValue === '1') {
+          setPetType('Cat');
+        } else if (selectedValue === '2') {
+          setPetType('Dog');
+        } else {
+          setPetType('Other');
+        }
+      };
+
   const renderPets = () => {
     const arrDisplay = [];
 
@@ -101,8 +113,8 @@ function MainScreen() {
           </View>
              <Button title="Add Pet" 
               onPress={() => {
-                setPet([...pet, petName]);
-                setPetName('');
+                setPet([...pet,petName + ' - ' + petType]);
+                setPetType('');
               }}
             />
             <View style={styles.petContainer}>
